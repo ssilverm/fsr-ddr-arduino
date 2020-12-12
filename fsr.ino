@@ -14,84 +14,112 @@ int fsrPin3 = 2;     // the FSR and 10K pulldown are connected to a0
 int fsrReading3;     // the analog reading from the FSR resistor divider
 int fsrPin4 = 3;     // the FSR and 10K pulldown are connected to a0
 int fsrReading4;     // the analog reading from the FSR resistor divider 
+
+
+int fsrPins[] = {0,1,2,3};
+int fsrReadings[4];
+
 void setup(void) {
   // We'll send debugging information via the Serial monitor
   Serial.begin(9600);   
 }
  
 void loop(void) {
-  fsrReading1 = analogRead(fsrPin1);  
- 
-  Serial.print("Analog reading 1 = ");
-  Serial.print(fsrReading1);     // the raw analog reading
- 
-  // We'll have a few threshholds, qualitatively determined
-  if (fsrReading1 < 10) {
-    Serial.println(" - No pressure");
-  } else if (fsrReading1 < 200) {
-    Serial.println(" - Light touch");
-  } else if (fsrReading1 < 500) {
-    Serial.println(" - Light squeeze");
-  } else if (fsrReading1 < 800) {
-    Serial.println(" - Medium squeeze");
-  } else {
-    Serial.println(" - Big squeeze");
-  }
 
-  
-  fsrReading2 = analogRead(fsrPin2);  
+  for (int i = 0; i < 4; i++) {
+    fsrReadings[i] = analogRead(fsrPins[i]); 
+    Serial.print("Analog reading ");
+    Serial.print(i);
+    Serial.print(" = ");
+    Serial.print(fsrReadings[i]);     // the raw analog reading
  
-  Serial.print("Analog reading 2 = ");
-  Serial.print(fsrReading2);     // the raw analog reading
- 
-  // We'll have a few threshholds, qualitatively determined
-  if (fsrReading2 < 10) {
-    Serial.println(" - No pressure");
-  } else if (fsrReading2 < 200) {
-    Serial.println(" - Light touch");
-  } else if (fsrReading2 < 500) {
-    Serial.println(" - Light squeeze");
-  } else if (fsrReading2 < 800) {
-    Serial.println(" - Medium squeeze");
-  } else {
-    Serial.println(" - Big squeeze");
-  }
-
-  fsrReading3 = analogRead(fsrPin3);  
- 
-  Serial.print("Analog reading 3 = ");
-  Serial.print(fsrReading3);     // the raw analog reading
- 
-  // We'll have a few threshholds, qualitatively determined
-  if (fsrReading3 < 10) {
-    Serial.println(" - No pressure");
-  } else if (fsrReading3 < 200) {
-    Serial.println(" - Light touch");
-  } else if (fsrReading3 < 500) {
-    Serial.println(" - Light squeeze");
-  } else if (fsrReading3 < 800) {
-    Serial.println(" - Medium squeeze");
-  } else {
-    Serial.println(" - Big squeeze");
-  }
-
-  fsrReading4 = analogRead(fsrPin4);  
- 
-  Serial.print("Analog reading 4 = ");
-  Serial.print(fsrReading4);     // the raw analog reading
- 
-  // We'll have a few threshholds, qualitatively determined
-  if (fsrReading4 < 10) {
-    Serial.println(" - No pressure");
-  } else if (fsrReading4 < 200) {
-    Serial.println(" - Light touch");
-  } else if (fsrReading4 < 500) {
-    Serial.println(" - Light squeeze");
-  } else if (fsrReading4 < 800) {
-    Serial.println(" - Medium squeeze");
-  } else {
-    Serial.println(" - Big squeeze");
-  }
+    // We'll have a few threshholds, qualitatively determined
+    if (fsrReadings[i] < 10) {
+      Serial.println(" - No pressure");
+    } else if (fsrReadings[i] < 200) {
+      Serial.println(" - Light touch");
+    } else if (fsrReadings[i] < 500) {
+      Serial.println(" - Light squeeze");
+    } else if (fsrReadings[i] < 800) {
+      Serial.println(" - Medium squeeze");
+    } else {
+      Serial.println(" - Big squeeze");
+    }
+ }
   Serial.println("\n");
   delay(1000);
+//  fsrReading1 = analogRead(fsrPin1);  
+// 
+//  Serial.print("Analog reading 1 = ");
+//  Serial.print(fsrReading1);     // the raw analog reading
+// 
+//  // We'll have a few threshholds, qualitatively determined
+//  if (fsrReading1 < 10) {
+//    Serial.println(" - No pressure");
+//  } else if (fsrReading1 < 200) {
+//    Serial.println(" - Light touch");
+//  } else if (fsrReading1 < 500) {
+//    Serial.println(" - Light squeeze");
+//  } else if (fsrReading1 < 800) {
+//    Serial.println(" - Medium squeeze");
+//  } else {
+//    Serial.println(" - Big squeeze");
+//  }
+//
+//  
+//  fsrReading2 = analogRead(fsrPin2);  
+// 
+//  Serial.print("Analog reading 2 = ");
+//  Serial.print(fsrReading2);     // the raw analog reading
+// 
+//  // We'll have a few threshholds, qualitatively determined
+//  if (fsrReading2 < 10) {
+//    Serial.println(" - No pressure");
+//  } else if (fsrReading2 < 200) {
+//    Serial.println(" - Light touch");
+//  } else if (fsrReading2 < 500) {
+//    Serial.println(" - Light squeeze");
+//  } else if (fsrReading2 < 800) {
+//    Serial.println(" - Medium squeeze");
+//  } else {
+//    Serial.println(" - Big squeeze");
+//  }
+//
+//  fsrReading3 = analogRead(fsrPin3);  
+// 
+//  Serial.print("Analog reading 3 = ");
+//  Serial.print(fsrReading3);     // the raw analog reading
+// 
+//  // We'll have a few threshholds, qualitatively determined
+//  if (fsrReading3 < 10) {
+//    Serial.println(" - No pressure");
+//  } else if (fsrReading3 < 200) {
+//    Serial.println(" - Light touch");
+//  } else if (fsrReading3 < 500) {
+//    Serial.println(" - Light squeeze");
+//  } else if (fsrReading3 < 800) {
+//    Serial.println(" - Medium squeeze");
+//  } else {
+//    Serial.println(" - Big squeeze");
+//  }
+//
+//  fsrReading4 = analogRead(fsrPin4);  
+// 
+//  Serial.print("Analog reading 4 = ");
+//  Serial.print(fsrReading4);     // the raw analog reading
+// 
+//  // We'll have a few threshholds, qualitatively determined
+//  if (fsrReading4 < 10) {
+//    Serial.println(" - No pressure");
+//  } else if (fsrReading4 < 200) {
+//    Serial.println(" - Light touch");
+//  } else if (fsrReading4 < 500) {
+//    Serial.println(" - Light squeeze");
+//  } else if (fsrReading4 < 800) {
+//    Serial.println(" - Medium squeeze");
+//  } else {
+//    Serial.println(" - Big squeeze");
+//  }
+//  Serial.println("\n");
+//  delay(1000);
 } 
